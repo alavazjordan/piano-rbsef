@@ -1,4 +1,4 @@
-package thirdprojects;
+package PianoPoject;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -19,16 +19,16 @@ public class PlayKey {
 		  
 		    public void run() {
 		      try {
-		        Clip clip = AudioSystem.getClip();
+		        Clip clip = AudioSystem.getClip(); // creates a new audion clip 
 		        AudioInputStream inputStream = AudioSystem.getAudioInputStream(
-		          Main.class.getResourceAsStream("Notes/" + str));
-		        clip.open(inputStream);
-		        clip.start(); 
+		          MyPiano.class.getResourceAsStream("Notes/" + str)); // gets accses to folder with audio files
+		        clip.open(inputStream); // opens the spesific file 
+		        clip.start(); // playsm the clip
 		      } catch (Exception e) {
 		        System.err.println(e.getMessage());
 		      }
 		    }
-		  }).start();
+		  }).start(); //starts audio clip
 		}
 	
 }
