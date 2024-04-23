@@ -3,7 +3,6 @@ package src.piano;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import src.main.MyPanel;

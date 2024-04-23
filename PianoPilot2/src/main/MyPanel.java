@@ -1,5 +1,4 @@
 package src.main;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -11,7 +10,6 @@ import java.util.ArrayList;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import src.bezel.Bezel;
@@ -22,20 +20,20 @@ public class MyPanel extends JPanel implements Runnable{
 	
 	Thread appThread = new Thread();
 	
+
 	MyPiano myPiano = new MyPiano();
 	Bezel b = new Bezel();
 	PlayKey pk = new PlayKey();
 	MouseHandler mh = new MouseHandler(myPiano.bk, myPiano.wk);
 	KeyHandler kh = new KeyHandler();
-	
-	JLabel console = new JLabel();
+	AnimateString as = new AnimateString();
 	ArrayList<String> outputs = new ArrayList<String>();
 	
 	
 	int FPS = 60;
 	
-	public static int screenWidth = 1920;
-	public static int screenHeight = 1080;
+	public static int screenWidth = 800;
+	public static int screenHeight = 600;
 	
 	public MyPanel() {
 		setPreferredSize(new Dimension(screenWidth,screenHeight));
@@ -48,18 +46,12 @@ public class MyPanel extends JPanel implements Runnable{
 		addMouseListener(mh);
 		addKeyListener(kh);
 
-		console.setBounds(100,100,200,30);
-		add(console);
-		console.setBackground(Color.black);
-        console.setForeground(Color.white);
-        console.setSize(200, 100);
-		
 
 	}
 
 	public void update(String note){
 		outputs.add(note);
-		console.setText(outputs.toString());
+		
 	}
 /////////////////////////////////////////////////////////////////////////////////////////////////
 class KeyHandler implements KeyListener{
@@ -251,7 +243,12 @@ class KeyHandler implements KeyListener{
         
         myPiano.draw(g2);
         b.draw(g2);
-        
+        try {
+			as.draw(g2,"#ABC",0,0,20,20);
+		} catch (IOException e) {
+			System.out.println("bruhbrhubrhrbuhrbuhbruhrbruurbrbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbu");
+			e.printStackTrace();
+		}
         g2.dispose();//This disposes of this graphics context and release any system resources that it is using.
     }
 
